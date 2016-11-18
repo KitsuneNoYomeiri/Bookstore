@@ -38,17 +38,17 @@ public class BookStoreController {
 		
 		// RESTful service to get all books
 	    @RequestMapping(value="/books", method = RequestMethod.GET)
-	    public @ResponseBody List<Book> studentListRest() {	
+	    public @ResponseBody List<Book> bookListRest() {	
 	        return (List<Book>) repository.findAll();
 	    }    
 
 		// RESTful service to get book by id
 	    @RequestMapping(value="/book/{id}", method = RequestMethod.GET)
-	    public @ResponseBody Book findStudentRest(@PathVariable("id") Long bookId) {	
+	    public @ResponseBody Book findBookRest(@PathVariable("id") Long bookId) {	
 	    	return repository.findOne(bookId);
 	    }       
 		
-		// add new student
+		// add new book
 		@RequestMapping(value ="/add")
 		public String addBook(Model model){
 			model.addAttribute("book", new Book());
@@ -63,7 +63,7 @@ public class BookStoreController {
 			return "redirect:booklist";
 		}
 
-		//Delete student
+		//Delete book
 		@RequestMapping(value = "/delete/{id}", method = RequestMethod.GET)
 		public String deleteBook(@PathVariable("id") Long bookId, Model model) {
 			repository.delete(bookId);
